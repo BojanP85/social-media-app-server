@@ -19,7 +19,10 @@ const server = new ApolloServer({
 });
 
 mongoose
-  .connect(MONGODB, { useNewUrlParser: true, useUnifiedTopology: true }) // 'useNewUrlParser' and 'useUnifiedTopology' options take care of the deprecation warnings inside terminal.
+  .connect(process.env.MONGODB, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }) // 'useNewUrlParser' and 'useUnifiedTopology' options take care of the deprecation warnings inside terminal.
   .then(() => {
     console.log("Connected to MongoDB");
     return server.listen({ port: PORT });
